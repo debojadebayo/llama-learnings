@@ -8,8 +8,24 @@ from llama_index.core import (
     load_index_from_storage,
     Document
 )
+from dotenv import load_dotenv
+
+
+load_dotenv()
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY") 
 
 index = None 
+
+"""
+A lock to ensure only one thread is accessing the index at a time.
+
+When multiple users are uploading/ reading from vector index at the same time, 
+this lock ensures that this happens one at a time. Prevents index from being 
+mutated whilst another person is reading from database.
+
+This prevents race conditions from occurring and ensures that the index is 
+always in a valid state.
+"""
 lock = Lock()
 
 def initialise_index():
