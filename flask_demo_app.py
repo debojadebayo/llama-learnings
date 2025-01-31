@@ -1,8 +1,12 @@
 from flask import Flask, request
 from multiprocessing.managers import BaseManager
 from index_server import index, initialise_index
+from dotenv import load_dotenv
 
 app = Flask(__name__) 
+load_dotenv()
+
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY") 
 
 manager = BaseManager(("", 5000), b"password")
 manager.register("query_index")
