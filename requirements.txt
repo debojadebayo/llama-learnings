@@ -1,0 +1,7 @@
+Flask
+Flask-Cors
+llama-index-core>=0.11.0
+# see https://llamahub.ai for all integrations
+llama-index-embeddings-openai 
+llama-index-llms-openai 
+llama-index-agent-openai
